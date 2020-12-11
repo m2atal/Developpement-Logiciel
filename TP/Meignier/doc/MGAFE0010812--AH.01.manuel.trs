@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Trans SYSTEM "trans-14.dtd">
+<Trans audio_filename="MGAFE0010812--AH.01" version="3" version_date="201207">
+<Speakers>
+<Speaker id="spk1" name="S29" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk2" name="S8" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk3" name="S61" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk4" name="S19" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk5" name="S27" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk6" name="S28" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk7" name="S34" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk8" name="S39" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk9" name="S38" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk10" name="S40" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk11" name="S50" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk12" name="S49" type="unknown" dialect="native" accent="" scope="global"/>
+<Speaker id="spk13" name="présentateur" check="no" dialect="native" accent="" scope="global" type="male"/>
+</Speakers>
+<Episode>
+<Section type="report" startTime="0" endTime="410.112">
+<Turn startTime="0" endTime="5.41">
+<Sync time="0"/>
+
+</Turn>
+<Turn startTime="5.41" speaker="spk13" endTime="44.71" mode="spontaneous" fidelity="medium" channel="studio">
+<Sync time="5.41"/>
+
+<Event desc="loc" type="entities" extent="begin"/>
+Paris
+<Event desc="loc" type="entities" extent="end"/>
+ a célébré solennellement le * 
+<Event desc="time" type="entities" extent="begin"/>
+onze novembre
+<Event desc="time" type="entities" extent="end"/>
+. Partis de 
+<Event desc="loc" type="entities" extent="begin"/>
+l'Esplanade des Invalides
+<Event desc="loc" type="entities" extent="end"/>
+, les troupes ont remonté 
+<Event desc="loc" type="entities" extent="begin"/>
+les Champs-Elysées
+<Event desc="loc" type="entities" extent="end"/>
+ entre deux haies de parisiens recueillis. *
+<Event desc="org" type="entities" extent="begin"/>
+Polytechniciens
+<Event desc="org" type="entities" extent="end"/>
+ en bicorne, 
+<Event desc="org" type="entities" extent="begin"/>
+saint-Cyriens
+<Event desc="org" type="entities" extent="end"/>
+ en shako, les élèves des grandes écoles militaires, dont les aînés ont payé un lourd tribu à la victoire de 
+<Event desc="time" type="entities" extent="begin"/>
+mille neuf cent dix-huit
+<Event desc="time" type="entities" extent="end"/>
+, précèdaient les détachements de fantassins et le groupe d'anciens combattants portant les quatre vingt dix drapeau des régiments dissous.
+<Sync time="27.55"/>
+
+<Sync time="29.41"/>
+Le président de 
+<Event desc="org" type="entities" extent="begin"/>
+la République
+<Event desc="org" type="entities" extent="end"/>
+ venait bientôt se joindre aux troupes qu'il devait passer en revue sur 
+<Event desc="loc" type="entities" extent="begin"/>
+la place de l'Etoile
+<Event desc="loc" type="entities" extent="end"/>
+.
+<Sync time="35.2"/>
+
+<Sync time="36.07"/>
+Puis dans le recueillement, en présence du 
+<Event desc="func" type="entities" extent="begin"/>
+Maréchal
+<Event desc="func" type="entities" extent="end"/>
+ 
+<Event desc="pers" type="entities" extent="begin"/>
+Juin
+<Event desc="pers" type="entities" extent="end"/>
+ et du 
+<Event desc="func" type="entities" extent="begin"/>
+Général
+<Event desc="func" type="entities" extent="end"/>
+ 
+<Event desc="pers" type="entities" extent="begin"/>
+Ridgway
+<Event desc="pers" type="entities" extent="end"/>
+, 
+<Event desc="pers" type="entities" extent="begin"/>
+Monsieur Vincent Auriol
+<Event desc="pers" type="entities" extent="end"/>
+ a pleuré la tombe du soldat inconnu.
+</Turn>
+<Turn startTime="44.71" endTime="48.57">
+<Sync time="44.71"/>
+
+</Turn>
+<Turn startTime="48.57" speaker="spk13" endTime="53.27">
+<Sync time="48.57"/>
+Trente quatre ans après 
+<Event desc="event" type="entities" extent="begin"/>
+l'armistice de mille neuf cent dix huit
+<Event desc="event" type="entities" extent="end"/>
+, 
+<Event desc="loc" type="entities" extent="begin"/>
+la France
+<Event desc="loc" type="entities" extent="end"/>
+ toute entière se souvient et espère.
+</Turn>
+<Turn startTime="53.27" endTime="62.0">
+<Sync time="53.27"/>
+
+</Turn>
+<Turn speaker="spk13" startTime="62.0" endTime="83.64" mode="planned" fidelity="medium" channel="studio">
+<Sync time="62.00"/>
+A 
+<Event desc="loc" type="entities" extent="begin"/>
+Halloy
+<Event desc="loc" type="entities" extent="end"/>
+,
+<Sync time="64.11"/>
+
+<Event desc="pers" type="entities" extent="begin"/>
+Monsieur de Chevigné
+<Event desc="pers" type="entities" extent="end"/>
+ a décoré les rescapés du sixième bataillon de parachutistes coloniaux, qui ont pris part aux opérations de la région de * 
+<Event desc="loc" type="entities" extent="begin"/>
+Ningaloo
+<Event desc="loc" type="entities" extent="end"/>
+
+<Sync time="71.13"/>
+
+<Sync time="71.82"/>
+On sait que le repli de la garnison, lors de l'attaque massive de 
+<Event desc="loc" type="entities" extent="begin"/>
+Vietminh
+<Event desc="loc" type="entities" extent="end"/>
+, n'avait été rendue possible que par l'action énergique de ces hommes, dont 
+<Event desc="pers" type="entities" extent="begin"/>
+Monsieur Letourneau
+<Event desc="pers" type="entities" extent="end"/>
+, Ministre des 
+<Event desc="org" type="entities" extent="begin"/>
+Etats associés
+<Event desc="org" type="entities" extent="end"/>
+, a tenu à saluer le courage.
+</Turn>
+<Turn startTime="83.64" endTime="90.53">
+<Sync time="83.64"/>
+
+</Turn>
+<Turn startTime="90.53" speaker="spk13" endTime="118.49">
+<Sync time="90.53"/>
+En voyage d'inspection dans le sud tunisien, 
+<Event desc="pers" type="entities" extent="begin"/>
+Monsieur de Hautclocque
+<Event desc="pers" type="entities" extent="end"/>
+, résident général de 
+<Event desc="loc" type="entities" extent="begin"/>
+France
+<Event desc="loc" type="entities" extent="end"/>
+, a visité, à l'occasion de l'inauguration d'une nouvelle école, l'oasis saharienne de 
+<Event desc="loc" type="entities" extent="begin"/>
+Nefta
+<Event desc="loc" type="entities" extent="end"/>
+ dont la population lui a réservé un chaleureux accueil. En consacrant un important voyage à la visite des oasis de la région du * 
+<Event desc="loc" type="entities" extent="begin"/>
+Tchad
+<Event desc="loc" type="entities" extent="end"/>
+ et 
+<Event desc="loc" type="entities" extent="begin"/>
+Jérid
+<Event desc="loc" type="entities" extent="end"/>
+, auxquels les travaux entrepris par 
+<Event desc="loc" type="entities" extent="begin"/>
+la France
+<Event desc="loc" type="entities" extent="end"/>
+ ont déjà donné un bel essor, le résident a voulu marquer tout l'intérêt qu'il prend à la continuation de leur développement économique et social.
+</Turn>
+<Turn startTime="118.49" endTime="123.86">
+<Sync time="118.49"/>
+
+</Turn>
+<Turn startTime="123.86" speaker="spk13" endTime="140.45">
+<Sync time="123.86"/>
+
+<Event desc="loc" type="entities" extent="begin"/>
+Strasbourg 
+<Event desc="loc" type="entities" extent="end"/>
+est aujourd'hui l'un des plus grands chantiers de construction d'
+<Event desc="loc" type="entities" extent="begin"/>
+Europe
+<Event desc="loc" type="entities" extent="end"/>
+.
+<Sync time="127.61"/>
+
+<Sync time="128.18"/>
+Depuis le début de l'année, des équipes d'ouvriers travaillent sans arrêt à l'édification de nouveaux groupes d'immeubles qui remplaceront ceux qu'a détruit la guerre.
+<Sync time="135.83"/>
+
+<Sync time="136.46"/>
+ Dès 
+<Event desc="time" type="entities" extent="begin"/>
+mars mille neuf cent cinquante trois
+<Event desc="time" type="entities" extent="end"/>
+, les strasbourgeois pourront les occuper.
+</Turn>
+<Turn startTime="140.45" endTime="145.22">
+<Sync time="140.45"/>
+
+<Sync time="142.67"/>
+
+<Sync time="143.82"/>
+
+</Turn>
+<Turn speaker="spk13" startTime="145.22" endTime="178.74">
+<Sync time="145.22"/>
+A 
+<Event desc="loc" type="entities" extent="begin"/>
+Mulhouse
+<Event desc="loc" type="entities" extent="end"/>
+ règne une activité analogue, et dans un an, 
+<Event desc="loc" type="entities" extent="begin"/>
+l'Alsace
+<Event desc="loc" type="entities" extent="end"/>
+ aura pansé toutes ses blessures de guerre.
+<Sync time="151.22"/>
+
+<Sync time="157.24"/>
+Ici, l'urbanisme n'a pas hésité à innover, et 
+<Event desc="loc" type="entities" extent="begin"/>
+Mulhouse
+<Event desc="loc" type="entities" extent="end"/>
+ aura un immeuble en forme d'anneau entourant un ensemble de jardins.
+<Sync time="164.4"/>
+
+<Sync time="165.42"/>
+Dans les régions viticoles également, des maisons neuves se dressent, et le touriste qui découvrira, au détour d'un chemin,
+<Sync time="170.76"/>
+
+<Sync time="171.30"/>
+l'un de ces villages nichés entre les vignes, pourra penser très justement que la bataille d'
+<Event desc="loc" type="entities" extent="begin"/>
+Alsace
+<Event desc="loc" type="entities" extent="end"/>
+ vient d'être gagnée une seconde fois.
+</Turn>
+<Turn startTime="178.74" endTime="192.50">
+<Sync time="178.74"/>
+
+</Turn>
+<Turn startTime="192.50" speaker="spk13" endTime="215.29">
+<Sync time="192.50"/>
+Journée traditionnelle en 
+<Event desc="loc" type="entities" extent="begin"/>
+Angleterre
+<Event desc="loc" type="entities" extent="end"/>
+. 
+<Event desc="func" type="entities" extent="begin"/>
+La reine
+<Event desc="func" type="entities" extent="end"/>
+ 
+<Event desc="pers" type="entities" extent="begin"/>
+Elizabeth II
+<Event desc="pers" type="entities" extent="end"/>
+ s'est rendue à 
+<Event desc="loc" type="entities" extent="begin"/>
+Westminster
+<Event desc="loc" type="entities" extent="end"/>
+ pour ouvrir solennellement la deuxième session du 
+<Event desc="org" type="entities" extent="begin"/>
+Parlement
+<Event desc="org" type="entities" extent="end"/>
+. Le peuple de 
+<Event desc="loc" type="entities" extent="begin"/>
+Londres
+<Event desc="loc" type="entities" extent="end"/>
+ a pu acclamer, au passage, la jeune souveraine qui, pour la première fois de son règne, accomplit ce cérémonial
+<Sync time="207.16"/>
+vieux
+<Sync time="207.76"/>
+comme 
+<Event desc="loc" type="entities" extent="begin"/>
+l'Angleterre
+<Event desc="loc" type="entities" extent="end"/>
+. Alors que tant de choses ont changé dans le monde, les coutumes, et les rites de la monarchie anglaise demeurent les mêmes.
+</Turn>
+<Turn startTime="215.29" endTime="230.13">
+<Sync time="215.29"/>
+
+</Turn>
+<Turn startTime="230.13" speaker="spk13" endTime="257.16">
+<Sync time="230.13"/>
+La coiffure, cet hiver, telle que l'a voulu la haute coiffure française, verra se prolonger le succès de la ligne panache qui triompha cet automne.
+<Sync time="237.33"/>
+
+<Sync time="238.18"/>
+Quelle que soit votre occupation, madame, et surtout si le démon des voyages vous tourmente, vous trouverez pratique de conserver les cheveux courts en restant à la mode.
+<Sync time="246.21"/>
+
+<Sync time="249.06"/>
+Mais si vous préférez les hasards de la *Canasta, rien ne s'oppose à ce que vos cheveux restent également courts. Votre élégance s'en accommodera fort bien.
+</Turn>
+<Turn startTime="257.16" endTime="261.88">
+<Sync time="257.16"/>
+
+</Turn>
+<Turn startTime="261.88" speaker="spk13" endTime="267.46">
+<Sync time="261.88"/>
+Et si l'instant décisif de l'aveu est arrivé, votre grâce, mademoiselle, n'en sera que plus efficace, n'est-ce pas, monsieur ?
+</Turn>
+<Turn startTime="267.46" endTime="271.06">
+<Sync time="267.46"/>
+
+</Turn>
+<Turn startTime="271.06" speaker="spk13" endTime="294.56">
+<Sync time="271.06"/>
+Voici venir les brillantes soirée d'hiver et leurs valses gracieuses.
+<Sync time="274.18"/>
+
+<Sync time="274.87"/>
+La ligne de votre chevelure se prolongera tout naturellement de bijoux.
+<Sync time="277.96"/>
+
+<Sync time="280.74"/>
+Et ces lunettes, que 
+<Event desc="unk" type="entities" extent="begin"/>
+Mellerio
+<Event desc="unk" type="entities" extent="end"/>
+ a orné de brillant, seront encore dans la ligne.
+<Sync time="285.37"/>
+
+<Sync time="288.10"/>
+Pour cet hiver, la haute coiffure, ce précieux auxiliaire de la mode, a voulu faire triompher une fois de plus, madame, la ligne panache.
+</Turn>
+<Turn startTime="294.56" endTime="301.77">
+<Sync time="294.56"/>
+
+</Turn>
+<Turn startTime="301.77" speaker="spk13" endTime="321.39">
+<Sync time="301.77"/>
+Cinquante cinq mille personnes ont envahi le stade de 
+<Event desc="loc" type="entities" extent="begin"/>
+Colombes
+<Event desc="loc" type="entities" extent="end"/>
+ pour assister au match 
+<Event desc="loc" type="entities" extent="begin"/>
+France
+<Event desc="loc" type="entities" extent="end"/>
+ - 
+<Event desc="loc" type="entities" extent="begin"/>
+Irlande du Nord
+<Event desc="loc" type="entities" extent="end"/>
+. 
+<Event desc="loc" type="entities" extent="begin"/>
+La France
+<Event desc="loc" type="entities" extent="end"/>
+ débute en trombe, et avec un talent qui déchaîne les applaudissements, mais à la vingt et unième minute, un véritable drame consterne la foule enthousiaste jusqu'à là. Sur descente*, 
+<Event desc="pers" type="entities" extent="begin"/>
+Strappe
+<Event desc="pers" type="entities" extent="end"/>
+ et 
+<Event desc="pers" type="entities" extent="begin"/>
+Kopa
+<Event desc="pers" type="entities" extent="end"/>
+, 
+<Event desc="pers" type="entities" extent="begin"/>
+Cisowski
+<Event desc="pers" type="entities" extent="end"/>
+ est lancé mais il est descendu brutalement, et malgré des soins empressés, il doit quitter le terrain.
+</Turn>
+<Turn startTime="321.39" endTime="322.96">
+<Sync time="321.39"/>
+
+</Turn>
+<Turn startTime="322.96" speaker="spk13" endTime="331.73">
+<Sync time="322.96"/>
+
+<Event desc="pers" type="entities" extent="begin"/>
+Baratte
+<Event desc="pers" type="entities" extent="end"/>
+ prend sa place, et à la trentième minute, nouvelle attaque française. 
+<Event desc="pers" type="entities" extent="begin"/>
+Kopa
+<Event desc="pers" type="entities" extent="end"/>
+ descend, dribble deux adversaires, * Ujlaki 
+<Sync time="328.97"/>
+saute
+<Sync time="329.52"/>
+et c'est le but. 
+<Event desc="loc" type="entities" extent="begin"/>
+France
+<Event desc="loc" type="entities" extent="end"/>
+, un, 
+<Event desc="loc" type="entities" extent="begin"/>
+Irlande
+<Event desc="loc" type="entities" extent="end"/>
+, zéro.
+</Turn>
+<Turn startTime="331.73" endTime="335.13">
+<Sync time="331.73"/>
+
+</Turn>
+<Turn startTime="335.13" speaker="spk13" endTime="347.3">
+<Sync time="335.13"/>
+
+<Event desc="pers" type="entities" extent="begin"/>
+Bonifaci
+<Event desc="pers" type="entities" extent="end"/>
+ claqué est remplacé par 
+<Event desc="pers" type="entities" extent="begin"/>
+Cisowski
+<Event desc="pers" type="entities" extent="end"/>
+ qui boîte bas. Descente de 
+<Event desc="pers" type="entities" extent="begin"/>
+Penverne
+<Event desc="pers" type="entities" extent="end"/>
+, poursuivi par 
+<Event desc="pers" type="entities" extent="begin"/>
+McMorran
+<Event desc="pers" type="entities" extent="end"/>
+. 
+<Event desc="pers" type="entities" extent="begin"/>
+Penverne
+<Event desc="pers" type="entities" extent="end"/>
+ passe à 
+<Event desc="pers" type="entities" extent="begin"/>
+Baratte
+<Event desc="pers" type="entities" extent="end"/>
+ qui glisse en retrait à 
+<Event desc="pers" type="entities" extent="begin"/>
+Ujlaki
+<Event desc="pers" type="entities" extent="end"/>
+,
+<Sync time="344.27"/>
+
+<Sync time="345.20"/>
+lequel se porte vers l'aile droite pour se démarquer.
+</Turn>
+<Turn startTime="347.3" endTime="350.75">
+<Sync time="347.3"/>
+
+</Turn>
+<Turn startTime="350.75" speaker="spk13" endTime="356.22">
+<Sync time="350.75"/>
+La balle revient au centre, où 
+<Event desc="pers" type="entities" extent="begin"/>
+Strappe
+<Event desc="pers" type="entities" extent="end"/>
+, démarqué, passe à 
+<Event desc="pers" type="entities" extent="begin"/>
+Kopa
+<Event desc="pers" type="entities" extent="end"/>
+ qui réussit le but. 
+<Event desc="loc" type="entities" extent="begin"/>
+France
+<Event desc="loc" type="entities" extent="end"/>
+, deux, 
+<Event desc="loc" type="entities" extent="begin"/>
+Irlande
+<Event desc="loc" type="entities" extent="end"/>
+, zéro.
+</Turn>
+<Turn startTime="356.22" endTime="360.13">
+<Sync time="356.22"/>
+
+</Turn>
+<Turn startTime="360.13" speaker="spk13" endTime="398.09">
+<Sync time="360.13"/>
+Il y a trente cinq minutes que l'on joue. Les Irlandais descendent en vague lente mais puissante, et sur un lobe, 
+<Event desc="pers" type="entities" extent="begin"/>
+Tully
+<Event desc="pers" type="entities" extent="end"/>
+ reprend et marque.
+<Sync time="367.74"/>
+
+<Sync time="368.32"/>
+A la mi-temps, la 
+<Event desc="loc" type="entities" extent="begin"/>
+France
+<Event desc="loc" type="entities" extent="end"/>
+ mène par deux buts un.
+<Sync time="370.6"/>
+
+<Sync time="372.75"/>
+En deuxième mi-temps, 
+<Event desc="loc" type="entities" extent="begin"/>
+la France
+<Event desc="loc" type="entities" extent="end"/>
+ jouant sans 
+<Event desc="pers" type="entities" extent="begin"/>
+Bonifaci
+<Event desc="pers" type="entities" extent="end"/>
+, et avec 
+<Event desc="pers" type="entities" extent="begin"/>
+Cisowski
+<Event desc="pers" type="entities" extent="end"/>
+ blessé, adopte une tactique de prudence et protège-cible.
+<Sync time="378.83"/>
+
+<Sync time="379.42"/>
+Bien qu'isolés au milieu de la défense irlandaise, les trois derniers attaquants français combinent remarquablement, et à la quarante quatrième minute, 
+<Event desc="pers" type="entities" extent="begin"/>
+Kopa
+<Event desc="pers" type="entities" extent="end"/>
+ est en possession du ballon. La balle va de 
+<Event desc="pers" type="entities" extent="begin"/>
+Curyl
+<Event desc="pers" type="entities" extent="end"/>
+ à 
+<Event desc="pers" type="entities" extent="begin"/>
+Strappe
+<Event desc="pers" type="entities" extent="end"/>
+,
+<Sync time="390.91"/>
+
+<Sync time="391.61"/>
+puis encore à 
+<Event desc="pers" type="entities" extent="begin"/>
+Kopa
+<Event desc="pers" type="entities" extent="end"/>
+, et c'est le troisième but. Et 
+<Event desc="loc" type="entities" extent="begin"/>
+la France 
+<Event desc="loc" type="entities" extent="end"/>
+remporte ainsi sa troisième victoire consécutive.
+</Turn>
+<Turn startTime="398.09" endTime="410.112">
+<Sync time="398.09"/>
+
+</Turn>
+</Section>
+</Episode>
+</Trans>

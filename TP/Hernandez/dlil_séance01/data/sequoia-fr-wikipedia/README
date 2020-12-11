@@ -1,0 +1,9 @@
+Le contenu des répertoires suivants ont été extraits de Sequoia V4 []
+  ftb-xml format de Paris 7 French Treebank
+  conll   http://nextens.uvt.nl/depparse-wiki/DataFormat
+  mrg     analyse syntaxique qui combine aussi l'information tagged
+  
+Les répertoires suivant ont été construits par mes soins (NH) en identifiant les articles de wikipedia ayant servis à construire le corpus à l'aide les titres reconnus dans le fichier mrg
+  xhtml   wget à partir de l'url de l'article
+  txt     xmllint avec xpath + recode pour extraire le contenu textuel
+

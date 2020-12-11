@@ -1,0 +1,12 @@
+Les listes présentes dans ce répertoire proviennent du projet Snowball
+lequel est disponible sous licence BSD
+http://snowball.tartarus.org/algorithms/
+
+Listes disponibles en français, anglais, allemand, espagnol, portugais, 
+italien, néerlandais, danois, suédois, norvégien, russe, finnois 
+et hongrois
+
+
+wget http://snowball.tartarus.org/algorithms/french/stop.txt -O stopwords-snowball-fr-latin1.txt
+
+cat stopwords-snowball-fr-latin1.txt | iconv -f ISO-8859-1 -t UTF-8 - | grep -vP '^\s' | grep -v '^$' |  sed -r 's/ +\|?.*$//g' | sed -r "s/^(.)$/\1'/g"  > stopwords-fr-utf8.txt

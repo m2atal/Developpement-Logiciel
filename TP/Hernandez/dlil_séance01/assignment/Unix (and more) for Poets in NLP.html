@@ -1,0 +1,872 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Unix (and more) for Poets in NLP</title>
+	<meta name="generator" content="LibreOffice 6.0.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2018-12-07T00:32:32.385205630"/>
+	<!-- saved from url=(0047)file:///tmp/zim-hernandez/print-to-browser.html -->
+	<!-- Wiki content -->
+	<style type="text/css">
+		h1 { color: #4e9a06; text-decoration: underline }
+		pre { margin-left: 0.53cm; color: #2e3436 }
+		pre.cjk { font-family: "Courier New", monospace }
+		h2 { color: #4e9a06 }
+		h2.cjk { font-family: "Noto Sans CJK SC Regular" }
+		h2.ctl { font-family: "Lohit Devanagari" }
+		h3 { color: #4e9a06 }
+		h3.cjk { font-family: "Noto Sans CJK SC Regular" }
+		h3.ctl { font-family: "Lohit Devanagari" }
+		h4 { color: #4e9a06 }
+		h4.cjk { font-family: "Noto Sans CJK SC Regular" }
+		h4.ctl { font-family: "Lohit Devanagari" }
+		a:link { text-decoration: none }
+		tt { color: #2e3436 }
+		tt.cjk { font-family: "Courier New", monospace }
+		a:visited { text-decoration: none }
+	</style>
+</head>
+<body lang="fr-FR" dir="ltr">
+<h1>Unix (and more) for Poets in NLP</h1>
+<p><i>Nicolas Hernandez</i> 
+</p>
+<p>Sujet de travaux pratiques pour les étudiants en Master ATAL. 
+</p>
+<p>1 à 2 séances d'1h20. 
+</p>
+<p>Se compose d'une partie de cours technique et d'une partie
+d'exercices.</p>
+<p>Porte sur l'illustration de commandes UNIX (LINUX) pour des tâches
+de Traitement Automatique des Langues (TAL ou NLP en anglais). Ces
+tâches sont la récupération, conversion de format et d'encodage,
+nettoyage de données, pré-traitements (pseudo) linguistiques
+(tokenisation, racinisation, filtrage de mots vides...), analyse
+statistiques... L'objet des calculs statistiques sont les mots mais
+il est très facile de réutiliser les mêmes techniques pour
+analyser des n-grammes de mots, préfixes/suffixes des mots,
+mot/étiquette grammaticale, nom de balise SGML, valeur d'attributs
+SGML... 
+</p>
+<p>Inspiré de &quot;<a href="https://www.cs.upc.edu/~padro/Unixforpoets.pdf">Unix
+for Poets</a>&quot; de Kenneth Ward Church (IBM Research) et aussi de
+l'adaptation de <a href="http://www-clips.imag.fr/geod/User/laurent.besacier/NEW-TPs/TP-CL/tp1.html">Laurent
+Besacier</a> ainsi que celle de <a href="https://web.stanford.edu/class/cs124/lec/124-UnixForPoets.pdf">Christopher
+Manning</a>. 
+</p>
+<p>Le document de Church date de 1993... Combien d’années se sont
+écoulées&nbsp;? Avant Python il y avait Perl, et avant Perl il y
+eut Awk et les commandes Unix. Ce TP est là d'une part pour la
+&quot;culture&quot; et d'autre part pour avoir un aperçu de ce que
+l'on peut faire d'utile et facilement en ligne de commande. Quand
+cela deviendra trop compliqué on ne s'interdira pas d'utiliser des
+langages de programmation de plus haut niveau et plus riches en
+fonctionnalités : Python, Perl, Java... 
+</p>
+<h2 class="western">1. Environnement Unix/Linux</h2>
+<p>Pour connaître le manuel d'une commande <tt class="western">cmd</tt>,
+en général taper <tt class="western">man cmd</tt>. 
+</p>
+<h3 class="western">1.1. Manipulation de données tabulaires</h3>
+<p>Unix gère de manière privilégiée les fichiers formatées sous
+forme de tables composées de colonnes et de lignes. Les lignes sont
+séparées par le caractère newline <tt class="western">\n</tt> et
+les colonnes (en général) par le caractère tabulation <tt class="western">\t</tt>
+; mais celui-ci peut souvent se redéfinir (<tt class="western">-d</tt>
+pour delimiter par exemples pour les commandes cut et paste).<br/>
+Le
+format CSV (Comma Separated Value) est donc une variante. 
+</p>
+<h4 class="western">Gestion de flux</h4>
+<p>Par défaut, la plupart des outils à partir de l'entrée
+standard, le clavier, (stdin) et écrivent sur la sortie standard,
+l'écran, (stdout). On peut rédiriger les entrées et les sorties
+vers des fichiers, à l'aide des commandes suivantes :</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">cat</tt>
+	affiche le contenu d'un ou plusieurs fichiers sur stdout ; tac
+	affiche le contenu d'un fichier dans l'ordre inverse 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">head</tt>,
+	tail affiche les (<tt class="western">-n NUM</tt>) premières ou
+	dernières lignes d'un fichier sur stdout ; <tt class="western">tail
+	-n +NUM</tt> permet d'afficher toutes les lignes sauf les NUM
+	premières 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">echo</tt>
+	affiche une ligne de texte (-n sans newline) sur stdout 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">&lt;</tt>
+	lit depuis un fichier 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">écrit <tt class="western">&gt;</tt>
+	ou ajoute <tt class="western">&gt;&gt;</tt> dans un fichier la
+	sortie standard ou la sortie d'erreur (stderr avec 2&gt; et 2&gt;&gt;).
+	Pour info <tt class="western">2&gt;&amp;1</tt> redirige stderr vers
+	stdout. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">|</tt>
+	rédirige la sortie de la commande précédente vers l'entrée de la
+	commande suivante (pipe) 
+	</p>
+	<li/>
+<p><tt class="western">column -s &quot; &quot; -t</tt> is a
+	standard unix program that is very convenient -- it finds the
+	appropriate width of each column, and displays the text as a nicely
+	formatted table.
+	<a href="http://stackoverflow.com/questions/1875305/command-line-csv-viewer">http://stackoverflow.com/questions/1875305/command-line-csv-viewer</a>
+		</p>
+</ul>
+<h4 class="western">Filtrage et comptage de lignes</h4>
+<p>Un <a href="http://www.cbs.dtu.dk/courses/27610/regular-expressions-cheat-sheet-v2.pdf">aide-mémoire
+sur les expressions régulières</a>. 
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">grep</tt>
+	filtre les lignes en les gardant ou pas (<tt class="western">-v</tt>)
+	selon la présence d'une regex selon la syntaxe Extended POSIX (<tt class="western">-E
+	regex</tt>) ou perl (<tt class="western">-P regex</tt>) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">uniq</tt>
+	supprime les occurrences dupliquées de lignes triées,
+	éventuellement en les préfixant par leur # d'occurrences (-c) et
+	en conservant que celles d'occurrences supérieure à 2 (-d) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">sort</tt>
+	trie les lignes d'un fichier sur critère alphanumérique (<tt class="western">-d</tt>),
+	numérique (<tt class="western">-g</tt>) et éventuellement en
+	inversant l'ordre (<tt class="western">-r</tt>) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">wc</tt>
+	compte les lignes (<tt class="western">-l</tt>) ou les mots (<tt class="western">-w</tt>)
+	mais on ne connait pas le critère de segmentation en mots 
+	</p>
+	<li/>
+<p><tt class="western">shuf</tt> génère des permutations
+	aléatoires de lignes 
+	</p>
+</ul>
+<h4 class="western">Filtrage et fusion de colonnes (field)</h4>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">cut</tt>
+	copie de chaque ligne des caractères ou colonnes (resp. avec -c ou
+	<tt class="western">-f</tt>) désignés sous forme de liste 2,4 ou
+	d'étendue 2-4 d'offsets 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">paste</tt>
+	colle côte-à-côte chaque ligne de différents fichiers 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">comm</tt>
+	compare deux fichiers triés ligne par ligne en affichant sur 3
+	colonnes les lignes uniques au premier, puis au second et enfin les
+	communes à moins qu'on les supprime (resp. -1, -2 et -3) 
+	</p>
+	<li/>
+<p><tt class="western">join</tt> joint deux fichiers sur les
+	valeurs triées d'une de leurs colonnes (resp -1 et -2} suivi du
+	rang de la colonne) 
+	</p>
+</ul>
+<h4 class="western">Edition de lignes</h4>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">tr 'SEQ1 '
+	'SEQ2</tt>' traduit une séquence de caractères (ou son complément
+	-c) par une autre de même taille (éventuellement en &quot;squeezant&quot;
+	les caractères traduits identiques consécutifs (<tt class="western">-s</tt>)
+	; <tt class="western">tr -d 'SEQ</tt>' pour supprimer la séquence 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">sed -r
+	's/([^1]er|ir)$/\1\tVERB/g</tt>' substitue une chaîne de caractères
+	définie par une regex (étendue) en une autre chaîne
+	(éventuellement à partir de morceaux de la première. 
+	</p>
+	<li/>
+<p><tt class="western">rev</tt> inverse l'ordre des caractères
+	dans la ligne 
+	</p>
+</ul>
+<p>Pour de nombreuses commandes, il est possible de spécifier le
+délimiteur de colonnes à considérer en input et en output. 
+</p>
+<h3 class="western">1.2. Manipulation de formats et d'encodages</h3>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">echo ${LANG}</tt>
+	connaître l'encodage de son environnement 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">pdftohtml,
+	pdftotext, html2text</tt> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">tidy</tt>
+	pour la correction et l'xmlisation d'un document HTML 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">file -i FILE</tt>
+	connaître le type MIME d'un fichier et accessoirement son encodage 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">hexdump -c</tt>
+	affiche un contenu octet par octet (quel que soit l'encodage) ; avec
+	-C on obtient <a href="http://www.utf8-chartable.de/">une séquence
+	d'hexa à partir de laquelle on peut retrouver le nom correspondant
+	au caractère unicode si l'encodage est en UTF-*</a> ; avec -b pour
+	avoir une version en octal ; voir aussi la commande od 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">iconv -f
+	iso-8859-1 -t utf-8 FILE</tt> changer l'encodage ( -l pour connaître
+	la liste) 
+	</p>
+	<li/>
+<p><tt class="western">recode HTML\_4.0</tt> rencode les
+	entités HTML, les fins de lignes DOS ( /CR-LF} et LINUX /CR}) (-l
+	pour connaître la liste) 
+	</p>
+</ul>
+<p>Pas nécessairement dans les configurations de base d'Ubuntu ;
+<br/>
+<tt class="western">apt-get install tidy recode</tt> 
+</p>
+<p>Lire le document sur les jeux de caractères, les codes et
+l'encodage dans le répertoire ressource du tp. 
+</p>
+<h3 class="western">Manipulation de données XML</h3>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">xmllint</tt>
+	parseur XML, vérifie la bonne formation (aucune erreur affichée
+	avec <tt class="western">--noout</tt>), la validité (<tt class="western">--dtdvalid
+	DTD|--xschema SCHEMA</tt>), change l'encodage (<tt class="western">--encode
+	ENCODING</tt>) , indente (<tt class="western">--format</tt>),
+	exécute des requêtes XPath (<tt class="western">--xpath
+	XPathExpression</tt>), substituer les références aux entités par
+	leur valeur (<tt class="western">--noent</tt>) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">xsltproc</tt>
+	parseur XSL 
+	</p>
+	<li/>
+<p>bibliothèque java <tt class="western">saxon</tt> 9 pour
+	XPath 2.0 (présent dans votre répertoire application) 
+	</p>
+</ul>
+<pre class="western">apt-get install libxml2-utils xsltproc 
+# le premier donne accès à la commande xmllint</pre><h3 class="western">
+1.4. Manipulation de données json</h3>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">jq </tt>parseur
+	json, pour extraire de l’information et transformer en nouveau
+	json&nbsp;; <a href="https://stedolan.github.io/jq/tutorial/">ici un
+	bon tutoriel jq</a></p>
+	<p style="margin-bottom: 0cm"></p>
+</ul>
+<pre class="western">apt-get install jq
+</pre><h3 class="western">
+1.5. Reference card / Quick reference / Cheat sheet sur bash</h3>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><a href="http://www.fejf.de/tips/bash.quickref.pdf">John
+	McCreesh</a> 2007, très bien fait sur 2 pages, si vous en cherchez
+	1 c'est certainement celui-ci ! 
+	</p>
+	<p style="margin-bottom: 0cm"> 
+	</p>
+</ul>
+<h3 class="western">1.6. Perles de codeurs (éléments de correction)</h3>
+<ul>
+	<li/>
+<p>Récupérer le contenu textuel d'un document XHTML sans les
+	directives CSS et JAVASCRIPT 
+	</p>
+</ul>
+<p><tt class="western">xmllint --xpath
+'//*[not(ancestor-or-self::script) and
+not(ancestor-or-self::style)]/text()' FILE | recode HTML_4.0 | less</tt></p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">Convertir de colonnes en lignes
+	<tt class="western">tr ' ' '\n</tt>' ou bien <tt class="western">tr
+	'\t' '\n</tt>' 
+	</p>
+	<li/>
+<p>Supprimer des caractères de fin de lignes afin de
+	n'obtenir qu'une seule ligne <tt class="western">tr -d '\n' ;</tt> 
+	</p>
+</ul>
+<p>pour éviter que le mot de fin de ligne soit collé avec le
+suivant de début de ligne préférer <tt class="western">tr '\n' ' </tt>'</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">Supprimer des lignes vides grep
+	-v '^$' 
+	</p>
+	<li/>
+<p>Ordonner les éléments d'une liste sur leur nombre
+	d'occurrences 
+	</p>
+</ul>
+<p>cat FILE | sort | uniq -c | sort -gr | less</p>
+<ul>
+	<li/>
+<p>&quot;Hasher&quot; les mots et observer les motifs de hash
+	les plus fréquents 
+	</p>
+</ul>
+<p><tt class="western">cat FILE | tr -s'[:lower:]' 'a' | tr -s
+'[:upper:]' 'A' | tr -s '[:digit:]' '1' | tr -s '[:punct:]' '.' | tr
+' ' '\n' | sort | uniq -c | sort -gr | less</tt></p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><a href="http://www.catonmat.net/blog/set-operations-in-unix-shell/">Opérations
+	sur les ensembles avec des commandes Unix</a> notamment
+	l'intersection de deux fichiers 
+	</p>
+	<ul>
+		<li/>
+<p style="margin-bottom: 0cm"><tt class="western">cat f1 f2 |
+		sort | uniq -d </tt>
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><tt class="western">ou join -j
+		1 f1.sorted f2.sorted </tt>
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><tt class="western">ou comm -12
+		&lt;(sort f1 | uniq) &lt;(sort f2) </tt>
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><tt class="western">ou comm -1
+		-2 /tmp/file1.sort /tmp/file2.sort</tt> 
+		</p>
+	</ul>
+	<li/>
+<p style="margin-bottom: 0cm">Evaluer le temps pris par un
+	traitement time (help time) vs <a href="/usr/bin/time">/usr/bin/time</a>
+	(man time) 
+	</p>
+	<ul>
+		<li/>
+<p style="margin-bottom: 0cm"><tt class="western">time seq 1
+		1000000 | shuf | sort -gr | shuf | sort -gr | shuf | sort -gr | wc
+		#1</tt> 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><tt class="western">/usr/bin/time
+		seq 1 1000000 | shuf | sort -gr | shuf | sort -gr | shuf | sort -gr
+		| wc #2</tt> 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><tt class="western">(time seq 1
+		1000000) | shuf | sort -gr | shuf | sort -gr | shuf | sort -gr | wc
+		#3</tt> 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm">#1 calcule le temps de toute la
+		pipeline et #2 et #3 seulement le 1er argument à savoir seq 1
+		1000000 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm">help is a bash command 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm">real/elapsed (time from start
+		to finish of the call including waiting for I/O to complete or
+		other process if it s a bottleneck) ; 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm">user (time spent outside the
+		kernel (library codes) within the process) 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm">sys (time spent in the kernel
+		(system calls) within the process) 
+		</p>
+	</ul>
+	<li/>
+<p style="margin-bottom: 0cm">Calculer <tt class="western">echo
+	2+2 | bc ou $((2+2))</tt> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Une boucle en bash 
+	</p>
+	<ul>
+		<li/>
+<p style="margin-bottom: 0cm"><tt class="western">for I in
+		`seq 0 100000`; do I=$((I+1)); done;echo ${I};</tt> 
+		</p>
+		<li/>
+<p><tt class="western">I=1; while [ $I -ne 100000 ]; do
+		I=$((I+1)); done; echo $I;</tt> 
+		</p>
+	</ul>
+</ul>
+<ul>
+	<li/>
+<p># perl echo utf-8 (le fameux -CDS ; tester sans avant tout)
+	et en ligne de commande 
+	</p>
+</ul>
+<p><tt class="western">time cat /tmp/big-data.txt | perl -CDS -ne
+'print</tt>'</p>
+<ul>
+	<li/>
+<p># python echo 
+	</p>
+</ul>
+<pre class="western">time cat /tmp/big-data.txt | PYTHONIOENCODING=utf-8 python -c'import sys
+for line in sys.stdin:
+        print line.decode(sys.stdin.encoding).strip()
+'</pre>
+<ul>
+	<li/>
+<p># perl grep utf-8 
+	</p>
+</ul>
+<p><tt class="western">time cat /tmp/big-data.txt | perl -CDS -ne 'if
+(/^\p{L}+$/) {print}</tt>'</p>
+<ul>
+	<li/>
+<p># python grep utf-8 et en ligne de commande 
+	</p>
+</ul>
+<pre class="western">time cat /tmp/big-data.txt  | PYTHONIOENCODING=utf-8 python -c'
+import sys
+import re
+for line in sys.stdin:
+  if re.compile(u&quot;^[^\d]+\d+$&quot;).search(line):
+        print line.decode(sys.stdin.encoding).strip()
+'</pre>
+<ul>
+	<li/>
+<p># perl substitution utf-8 
+	</p>
+</ul>
+<p><tt class="western">time cat /tmp/big-data.txt | perl -CDS -ne
+'s/([^1i]er|ir)$/\1\tVERB/g; </tt>' 
+</p>
+<ul>
+	<li/>
+<p># python substitution utf-8 
+	</p>
+</ul>
+<pre class="western">time cat /tmp/big-data.txt  | PYTHONIOENCODING=utf-8 python -c'
+import sys
+import re
+for line in sys.stdin:
+  line = re.sub(r&quot;([^1i]er|ir)$&quot;, r&quot;\1\tVERB&quot;, line)
+  print line.decode(sys.stdin.encoding).strip()
+'</pre>
+<ul>
+	<li/>
+<p>Dans les regex de perl ou java <tt class="western">\p{code
+	d'une propriété Unicode}</tt> : correspond à un caractère doté
+	de la <a href="http://docs.oracle.com/javase/tutorial/essential/regex/unicode.html#properties">propriété
+	Unicode spécifiée</a>. 
+	</p>
+</ul>
+<p><br/>
+<br/>
+
+</p>
+<h3 class="western">1.6 Conclusion</h3>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">L'environnement unix offre des
+	solutions pour réaliser de nombreuses tâches du taliste en
+	quelques commandes pipées (récupération, conversion de format et
+	d'encodage, nettoyage de données, pré-traitements (pseudo)
+	linguistiques (tokenisation, racinisation, filtrage de mots
+	vides...), analyse statistiques... 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Des techniques d'analyse
+	statistiques pour des n-grammes de mots, préfixes/suffixes des
+	mots, mot/étiquette grammaticale, nom de balise SGML, valeur
+	d'attributs SGML... 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">La qualité de ces traitements
+	est proportionnelle à la complexité de la spécification de ces
+	commandes 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Du point de vue du développeur
+	: pas nécessairement adapté lorsque l'algorithme devient compliqué
+	ou pour faire du développement pérenne ; il existe d'autres
+	alternatives plus récentes qui offrent aussi plus de
+	fonctionnalités (Perl, Python, Java...) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><tt class="western">tr</tt>
+	comprend les caractères \t et \n, grep -P aussi 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Du point de vue ingénierie du
+	TAL : 
+	</p>
+	<ul>
+		<li/>
+<p style="margin-bottom: 0cm">perte de la référence pour
+		les annotations, 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm">gestion non aisée des
+		caractères UNICODE 
+		</p>
+		<ul>
+			<li/>
+<p style="margin-bottom: 0cm">il faut spécifier les
+			caractères avec tr et sed. 
+			</p>
+			<li/>
+<p style="margin-bottom: 0cm">le mode étendu POSIX de sed
+			permet de ne pas backslasher les caractères spéciaux mais
+			utilise les mêmes notations de classes (e.g. [:upper:]) que tr 
+			</p>
+			<li/>
+<p style="margin-bottom: 0cm">grep peut bénéficier des
+			regex de perl mais ne gère pas les caractères unicodes 
+			</p>
+		</ul>
+		<li/>
+<p style="margin-bottom: 0cm">sed 
+		</p>
+		<li/>
+<p>auparavant des commandes applications sans dépendances,
+		aujourd'hui des applications utilisant des bibliothèques rendant
+		des service, ce qui permet d'exploiter directement ces
+		bibliothèques dans ses propres applications 
+		</p>
+	</ul>
+</ul>
+<h3 class="western">2. Exercices</h3>
+<p>Ci-dessous une série d'exercices qui illustre quelques tâches de
+TAL : essentiellement sur le thème de la construction et de la
+préparation de corpus ainsi qu'un aperçu du contenu à l'aide de
+quelques analyses statistiques simples. A noter que les techniques
+d'analyses sont illustrées sur des unigrammes de mots du texte. On
+pourrait aussi les appliquer à des n-grammes et changer la nature de
+ce qui est observé : préfixes/suffixes des mots, mot étiquette
+grammatical si cette information est à disposition, nom de balise
+SGML, valeur d'attributs SGML... et des combinaisons de ceux-ci. 
+</p>
+<h4 class="western">Votre travail</h4>
+<p>On vous demande de rédiger un rapport sur votre travail.</p>
+<p>Pour chaque exercice, en plus de répondre aux questions, donner
+aussi quelle est la (séquence de) commande(s) utilisée(s) et
+montrer un extrait du résultat à l'aide des commandes head ou
+less.<br/>
+Pour chaque question, des suggestions de commandes
+pourront vous être faites. Il vous est fortement conseillé de lire
+la section précédente intitulée &quot;Perles de codeurs&quot;
+avant de commencer les exercices ! 
+</p>
+<p>Les exercices de la section &quot;more...&quot; sont optionnels. 
+</p>
+<p>Ne pas oublier de (re) lire la conclusion après vos exercices. 
+</p>
+<p>Stocker vos fichiers de travail (quand ils ne sont pas trop gros)
+dans le répertoire <tt class="western">workspace</tt></p>
+<h4 class="western">Exercice : récupération du corpus</h4>
+<p>Nous allons utiliser des documents issus de Wikipedia. Nous
+pourrions utiliser un <a href="http://dumps.wikimedia.org/">dump</a>
+mais pour le coup on va travailler avec une page en particulier. 
+</p>
+<ul>
+	<li/>
+<p>Récupérer la page de Wikipedia sur l'<a href="http://fr.wikipedia.org/wiki/Affaire_Clearstream_2">Affaire
+	Clearstream 2</a> (wget/curl) 
+	</p>
+</ul>
+<p>On aura noté que <a href="http://fr.wikipedia.org/robots.txt">Wikipedia
+autorise sous certains conditions l'usage de wget</a>. 
+</p>
+<h4 class="western">Exercice : format et encodage</h4>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">Quels sont le type MIME et
+	l'encodage le plus probable du fichier récupéré ? (<tt class="western">file</tt>)
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm">Quelle valeur d'encodage
+	(<tt class="western">charset</tt>) est annoncée dans son en-tête ?
+	(<tt class="western">head</tt>) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Est-il XML bien formé ?
+	(<tt class="western">xmllint</tt>) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Quel encodage est mentionné
+	dans le fichier se trouvant dans le répertoire
+	<tt class="western">data/samples/fr.sgml.latin/Affaire_Clearstream_2.latin1</tt>
+	? (<tt class="western">head</tt>) Lequel est le plus probable ?
+	(<tt class="western">file</tt>) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Le convertir en UTF-8 (<tt class="western">iconv</tt>).
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm">L'opération a-t-elle réussie ?
+	(<tt class="western">file</tt>) Est-ce que la valeur du charset dans
+	l'en-tête d'un fichier XML a été modifiée ? (head) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Combien d'octets sont
+	nécessaires pour encoder le signe 'e', le signe 'é' et le signe
+	'€' ? 
+	</p>
+	<li/>
+<p>Que pensez-vous de l'utilisation du terme charset dans
+	l'en-tête des fichiers XML et dans la sortie de <tt class="western">file
+	-i</tt> à la lumière de vos connaissances sur les notions de jeux
+	de caractères, code point, pages de codes et encodage ? 
+	</p>
+</ul>
+<h4 class="western">Exercice : extraction et nettoyage du texte</h4>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">Extraire le contenu textuel du
+	document. Ne garder que le contenu relatif au sujet (<tt class="western">content</tt>),
+	filtrer tout contenu spécifique à la navigation ou à l'indexation
+	dans Wikipédia (e.g. <tt class="western">script, jump-to-nav,
+	siteSub, homonymie, printfooter, bandeau-portail, catlinks</tt>).
+	Celui-ci étant XML bien formé, on peut utiliser un parseur XML.
+	(<tt class="western">xmllint</tt> et son implémentation d'XPath) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Recoder les entités HTML
+	(<tt class="western">recode</tt>)  
+	</p>
+</ul>
+<h4 class="western">Exercice : segmentation en token mots</h4>
+<p>Dans cet exercice, on s'appuiera sur l'intuition commune pour
+définir ce à quoi correspond un mot. <br/>
+Sur un plan pratique, on
+peut travailler sur la définition du mot ou de leurs séparateurs en
+spécifiant les caractères qui les composent ou bien bien ceux qui
+ne les composent pas (i.e. le complément).<br/>
+La tradition
+unixienne et sa manipulation de flux a conduit à représenter les
+annotations mots par un marquage à l'aide du séparateur <tt class="western">newline</tt>
+(\n), i.e. un mot par ligne, ou bien à l'aide du caractère
+whitespace ( ), i.e. chaque mot séparé par un espace. <br/>
+Cette
+tradition (d'intégrer le marquage au sein même de la donnée
+analysée) est une (TRES)<tt class="western">{1,INFINI}</tt> mauvaise
+habitude car elle conduit à une désynchronisation avec les
+annotations pré-existantes sur la donnée en entrée ; la première
+des annotations étant la position des caractères les uns par
+rapport aux autres. La conséquence est double : perte d'information
+et difficulté d'alignement avec d'autres analyses.<br/>
+Revenons à
+nos moutons... 
+</p>
+<p>Les caractères séparateurs de mots sont généralement les
+caractères de ponctuation (e.g. point, virgule, hyphen, apostrophe)
+et les blancs (e.g. espace, tabulation). Ces caractères sont ambigus
+: le point peut se retrouver dans une puce numérique ou bien un
+nombre en anglais, la virgule peut composer un nombre réel en
+français, l'hyphen un mot composé, l'apostrophe des mots comme dans
+&quot;aujourd'hui&quot;. Noter que certains ont plus tendance à
+joindre qu'à séparer. Noter aussi que certains séparent à gauche,
+à droite ou des deux côtés du caractère. 
+</p>
+<p>Dans un premier temps, écrivez un segmenteur qui produit un mot
+par ligne en prenant l’espace comme séparateur (tr).</p>
+<p>Segmenter seulement sur les espaces, et sélectionner le premier
+mot contenant le caractère ':' (tr, grep et head). Demander vous
+pourquoi la segmentation sur espace n'a pas fonctionnée. Expliquer
+Regarder les codes hexa correspondant au caractère non visible et
+identifier son nom à l'aide d'une<a href="https://www.utf8-chartable.de/unicode-utf8-table.pl">
+table de correspondance nom/encodage UTF-8</a>.</p>
+<p>Pour info, la commande sed (<tt class="western">sed -r &quot;s/$(printf
+'\CODE_OCTAL_DE_CARACTERE')/ /g&quot;) </tt><tt class="western"><font face="Liberations serif, serif">peut
+être utilisé </font></tt><font face="Liberations serif, serif">pour
+co</font>nvertir ces caractères en espace afin que notre
+tokenization sur espace devienne effective avec ces caractères. Y
+arriverez-vous&nbsp;? 
+</p>
+<p>Le programme <font face="Courier New, monospace">applications/utf8-tokenize.perl</font>est
+issu des outils (<a href="http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tagger-scripts.tar.gz">tagger-scripts.tar.gz</a>)
+d’un des premiers étiqueteurs morphosyntaxiques largement
+utilisées, à savoir <a href="http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/">TreeTagger</a>.
+</p>
+<p>Utilisez le pour tokenizer votre texte</p>
+<p><font face="Courier New, monospace">../applications/utf8-tokenize.perl
+Affaire_Clearstream_2.txt </font><tt class="western"><font face="Courier New, monospace">Affaire_Clearstream_</font></tt><tt class="western"><font face="Courier New, monospace">2</font></tt><tt class="western"><font face="Courier New, monospace">.</font></tt><tt class="western"><font face="Courier New, monospace">txt.tok</font></tt></p>
+<p style="margin-bottom: 0cm"><tt class="western"><font face="Liberation Serif, serif">Puis
+éditez le code et répondez aux questions&nbsp;</font></tt><tt class="western">:</tt></p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">Ce tokenizer segmente t’il en
+	«&nbsp;décollant&nbsp;» la ponctuation des mots&nbsp;?</p>
+	<li/>
+<p style="margin-bottom: 0cm">Peut-on dire que son
+	fonctionnement constitue grossièrement à pré-découper selon les
+	espaces puis à traiter les tokens obtenus en regardant les
+	extrémités de ceux-ci pour segmenter plus précisément s’il
+	constate que des caractères de ponctuation sont collés à ceux-ci
+	? 
+	</p>
+</ul>
+<p style="margin-bottom: 0cm"><br/>
+
+</p>
+<p style="margin-bottom: 0cm">Pour information, 
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">\377 correspond au caractère
+	EOF</p>
+	<li/>
+<p style="margin-bottom: 0cm">@F = split; découpe l’entrée
+	standard sur les caractères blancs</p>
+</ul>
+<p style="margin-bottom: 0cm"><br/>
+
+</p>
+<p style="margin-bottom: 0cm"><br/>
+
+</p>
+<h4 class="western">Exercice : normalisation des mots du textes</h4>
+<p>Pour la suite des exercices travailler avec une concaténation des
+fichiers présents dans le répertoire <tt class="western">data/sequoia-fr-wikipedia/txt</tt>
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">passer en minuscule tous les
+	mots (<tt class="western">tr</tt>) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">filtrer les mots du texte à
+	partir de la liste de mots outils
+	<tt class="western">data/stopwords/stopwords-fr-utf8.txt</tt> (grep)
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm">raciniser les mots en retirant
+	les deux derniers caractères (<tt class="western">sed</tt>) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">sélectionner les mots qui ont
+	une taille supérieure ou égale à 4 caractères (<tt class="western">grep</tt>)
+		</p>
+	<li/>
+<p>filtrer (éventuellement de manière ad hoc en regardant la
+	liste) les mots qui ont des caractères autres que des lettres
+	(<tt class="western">grep</tt>) 
+	</p>
+</ul>
+<h4 class="western">Exercice : quelques statistiques sur les mots</h4>
+<p>Travailler dans un premier temps avec la liste de mots en
+minuscule sans mot vide. Eventuellement vous pourrez par la suite
+tester avec les mots racinisés et filtrés. 
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">compter le nombre de mots total
+	(<tt class="western">tokenization</tt> et wc) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">compter les occurrences de
+	chaque mot (<tt class="western">sort</tt> et <tt class="western">uniq</tt>),
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm">ordonner les mots par leur
+	nombre d'occurrences décroissant (au moins encore un <tt class="western">sort</tt>)
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm">constituer une liste des 50
+	premiers mots les plus fréquents (<tt class="western">head</tt>) ;
+	quelle est la nature de ces mots ? 
+	</p>
+	<li/>
+<p>jeter aussi un oeil sur les 50 premiers mots les moins
+	fréquents (<tt class="western">tail</tt>) 
+	</p>
+</ul>
+<p>Noter que ces traitement sont applicables à d'autres objets que
+les mots du texte : préfixe d'un mot, balise SGML... 
+</p>
+<h4 class="western">Exercice : explication de code 1</h4>
+<pre class="western">
+<font face="Liberation Serif, serif">Expliquez ce que produit le code suivant&nbsp;:</font>
+
+tail -n +2 fr-wikipedia.txt.tok &gt; fr-wikipedia.txt.tok.tail+2
+paste fr-wikipedia.txt.tok fr-wikipedia.txt.tok.tail+2 | sort | uniq -c | sort -gr | less</pre><h4 class="western">
+Exercice : comparer les performances de grep, perl, python et java</h4>
+<p>Créer artificiellement un gros corpus par exemple en vous rendant
+dans <tt class="western">data/sequoia-fr-wikipedia/txt</tt> et en
+tapant la commande suivante (remarquez en passant l'usage de la
+commande <tt class="western">seq</tt>) <br/>
+<tt class="western">for
+i in `seq 1 400`; do cat * &gt;&gt; /tmp/big-data.txt ; done</tt><br/>
+<tt class="western">ls
+-lh /tmp/big-data.txt </tt>
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">Que signifie real, user et sys
+	pour la commande time ? 
+	</p>
+	<li/>
+<p>Que visent à faire les différentes commandes suivantes ?
+	Exécutez les (plusieurs fois) et ordonnez les selon leurs temps 
+	</p>
+</ul>
+<pre class="western">time cat /tmp/big-data.txt | grep '[[:alnum:]]$' &gt;/dev/null
+time cat /tmp/big-data.txt | grep -P '\w$' &gt;/dev/null
+time cat /tmp/big-data.txt | perl -ne 'if (/\w$/) {print;}' &gt;/dev/null
+time cat /tmp/big-data.txt | python applications/re-search.py &quot;\w$&quot; &gt;/dev/null
+time cat /tmp/big-data.txt | python applications/re-compile-search.py &quot;\w$&quot;&gt;/dev/null
+time cat /tmp/big-data.txt | java -cp applications/JGrep -l -r &quot;\w$&quot; &gt; /dev/null</pre><h4 class="western">
+Exercice : explication de code 2</h4>
+<p><font face="Liberation Serif, serif">Expliquez ce que produit le
+code suivant&nbsp;:</font></p>
+<pre class="western">cat fr-wikipedia.txt.tok  | perl -CSD -ne 's/^([AEIOUÀÂÉÈÊÎÏÔŒÙÛaeiouàâéèêîïôœùû]+[^AEIOUÀÂÉÈÊÎÏÔŒÙÛaeiouàâéèêîïôœùû]+).+$/\1/g; s/^([^AEIOUÀÂÉÈÊÎÏÔŒÙÛaeiouàâéèêîïôœùû]+[AEIOUÀÂÉÈÊÎÏÔŒÙÛaeiouàâéèêîïôœùû]+).+$/\1/g;print' &gt; fr-wikipedia.txt.tok.truc
+cat fr-wikipedia.txt.tok   | tr -sc 'A-Za-zéçè' '\n' | perl -ne 's/^.+[^AEIOUÀÂÉÈÊÎÏÔŒÙÛaeiouàâéèêîïôœùû]([AEIOUÀÂÉÈÊÎÏÔŒÙÛaeiouàâéèêîïôœùû]+[^AEIOUaeiouéèê]+)$/\1/g; s/^.+[AEIOUÀÂÉÈÊÎÏÔŒÙÛaeiouàâéèêîïôœùû]([^AEIOUÀÂÉÈÊÎÏÔŒÙÛaeiouàâéèêîïôœùû]+[AEIOUÀÂÉÈÊÎÏÔŒÙÛaeiouàâéèêîïôœùû]+)$/\1/g;print'  &gt; fr-wikipedia.txt.tok.chose</pre><h4 class="western" style="margin-top: 0cm; margin-bottom: 0cm">
+Exercice : Produire un concordancier pour observer un mot donné en
+contexte</h4>
+<p style="margin-bottom: 0cm"><br/>
+
+</p>
+<p style="margin-bottom: 0cm">Ici un exemple en ligne
+http://www.webcorp.org.uk/live/</p>
+<h4 class="western" style="margin-top: 0cm; margin-bottom: 0cm"><br/>
+
+</h4>
+<h4 class="western" style="margin-top: 0cm; margin-bottom: 0cm">Exercice&nbsp;:
+Identifier les palindromes 
+</h4>
+<h4 class="western" style="margin-top: 0cm; margin-bottom: 0cm"><font face="Courier New, monospace"><span style="font-weight: normal">(</span></font><tt class="western"><font face="Courier New, monospace"><span style="font-weight: normal">rev</span></font></tt><font face="Courier New, monospace"><span style="font-weight: normal">,
+</span></font><tt class="western"><font face="Courier New, monospace"><span style="font-weight: normal">paste</span></font></tt><font face="Courier New, monospace"><span style="font-weight: normal">,
+</span></font><tt class="western"><font face="Courier New, monospace"><span style="font-weight: normal">comm</span></font></tt><font face="Courier New, monospace"><span style="font-weight: normal">)
+</span></font>
+</h4>
+<p style="margin-bottom: 0cm"><br/>
+
+</p>
+<h4 class="western">Exercice : Unix for Poets. Why Poets?</h4>
+<p>Pourquoi Unix se destine aux poètes ? Ce TP pour y répondre et
+probablement d’autres éléments dans l’article original.<!-- End wiki content --></p>
+</body>
+</html>

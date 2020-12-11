@@ -1,0 +1,23 @@
+http://benhur.teluq.uqam.ca/SPIP/inf6460/article.php3?id_article=29&id_rubrique=7&sem=5
+emacs pour changer l'encoding en utf-8
+javac Regex.java
+
+
+cd /home/hernandez/applications/textAnalysisToolkit/system
+# compile 
+javac JSed.java
+# make a jar
+jar cf JSed.jar JSed.class
+# Execute
+java  -cp JSed.jar JSed 'qqch' 'avec' 
+java JSed 'qqch' 'avec' 
+
+# des exemples dans hernandez@hebus:/media/MyPassport/current/public/research/UIMA-USER-DEV-ENV/workspace/cr$ less 110212_polytech_uima-nerc_regexannotator_update-rules_with-csv-files
+ | java  -cp ~/applications/textAnalysisToolkit/system/JSed.jar JSed '[\u201C\u201D\u0027\u0060\u00B4\u2018\u2019]' '\(-|\\s|\\u201C|\\u201D|\\u0027|\\u0060|\\u00B4|\\u2018|\\u2019\)\*' | 
+
+# variante  (mais ne marche pas avec le stdin je crois)
+Substitue.sh  '(\p{Lu}(?:\p{L})+)\s-' '$1-'  /tmp/fr-token-training-data.txt | less
+cat  /tmp/fr-token-training-data.txt | java  -cp ~/applications/textAnalysisToolkit/system/Substitue.jar Substitue  '(\p{Lu}(?:\p{L})+\s-\s)' '$1-' | less
+
+#
+http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html
